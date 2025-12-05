@@ -4,7 +4,7 @@ from fastapi import APIRouter,  HTTPException
 from config.database import Session as Session
 from models.user import User
 
-router = APIRouter()
+router = APIRouter(prefix="/users", tags=["users"])
 
 class UserCreate(BaseModel):
     username: str
@@ -133,3 +133,5 @@ def delete_user(user_id: int):
         return {"message": "Usuario eliminado"}
     finally:
         db.close()
+
+

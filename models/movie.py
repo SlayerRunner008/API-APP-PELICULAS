@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, Float
 from sqlalchemy.orm import relationship
 from config.database import Base
 
@@ -11,7 +11,7 @@ class Movie(Base):
     release_year = Column(Integer)
     genre = Column(String)
     poster_url = Column(String)
+    rating = Column(Float, nullable=True) 
 
-    # Relaciones
     favorites = relationship("Favorite", back_populates="movie", cascade="all, delete-orphan")
     reviews = relationship("Review", back_populates="movie", cascade="all, delete-orphan")
