@@ -4,3 +4,4 @@ pydantic
 sqlalchemy
 typing-extensions
 email-validator
+psycopg2-binary
