@@ -10,33 +10,44 @@ router = APIRouter(prefix="/movies", tags=["movies"])
 # ---------------------------
 class MovieCreate(BaseModel):
     title: str
-    description: str | None = None
-    release_year: int | None = None
-    genre: str | None = None
-    poster_url: str | None = None
+    year: int
+    duration_minutes: int
+    genre: str
     rating: float | None = None
+    image_url: str | None = None
+    synopsis: str | None = None
+    director: str
+    cast: str | None = None
 
 class MovieUpdate(BaseModel):
     title: str | None = None
-    description: str | None = None
-    release_year: int | None = None
+    year: int | None = None
+    duration_minutes: int | None = None
     genre: str | None = None
-    poster_url: str | None = None
     rating: float | None = None
+    image_url: str | None = None
+    synopsis: str | None = None
+    director: str | None = None
+    cast: str | None = None
 
 class MovieResponse(BaseModel):
     id: int
     title: str
-    description: str | None
-    release_year: int | None
-    genre: str | None
-    poster_url: str | None
+    year: int
+    duration_minutes: int
+    genre: str
     rating: float | None
+    image_url: str | None
+    synopsis: str | None
+    director: str
+    cast: str | None
 
     class Config:
         orm_mode = True
 
-
+# ---------------------------
+# CRUD Endpoints
+# ---------------------------
 @router.post("/", response_model=MovieResponse)
 def create_movie(movie: MovieCreate):
     db = Session()
