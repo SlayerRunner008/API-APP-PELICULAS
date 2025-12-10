@@ -5,9 +5,7 @@ from pydantic import BaseModel
 
 router = APIRouter(prefix="/movies", tags=["movies"])
 
-# ---------------------------
-# Schemas Pydantic
-# ---------------------------
+
 class MovieCreate(BaseModel):
     title: str
     year: int
@@ -45,9 +43,7 @@ class MovieResponse(BaseModel):
     class Config:
         orm_mode = True
 
-# ---------------------------
-# CRUD Endpoints
-# ---------------------------
+
 @router.post("/", response_model=MovieResponse)
 def create_movie(movie: MovieCreate):
     db = Session()
